@@ -6,10 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest
 class Proyecto4ApplicationTests {
 
-    @Test
-    fun contextLoads() {
-    }
-
 }
 
 

@@ -1,15 +1,14 @@
 package com.example.proyecto4.repositories
 
 import jakarta.persistence.*
-import java.time.Year
 
-@Table(name = "Movie")
+//@Table(name = "Movie")
 @Entity
 data class Movie(
     var title: String,
     var coverImage: String,
     var director: String,
-    var year: Int,
+    var releaseYear: Int,
     var synopsis: String,
 
 
