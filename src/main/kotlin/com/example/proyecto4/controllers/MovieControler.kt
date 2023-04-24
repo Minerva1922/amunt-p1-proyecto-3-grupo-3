@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class MovieController(@Autowired private val movieRepository: MovieRepository) {
 
-    @GetMapping("/Movie")
+    @GetMapping("/movie")
     fun allMovies(): List<Movie?>? {
         return movieRepository.findAll()
     }
