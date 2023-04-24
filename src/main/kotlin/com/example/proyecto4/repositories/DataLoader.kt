@@ -8,7 +8,7 @@ class DataLoader(private val movieRepository: MovieRepository) {
     @PostConstruct
     fun load() {
         val movies = listOf(
-<<<<<<< HEAD
+
             Movie("Ratatouille","https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg", "Brad Bird", 2007,"lalalal"),
             Movie("Jurassic Park","https://pics.filmaffinity.com/Parque_Jur_sico_Jurassic_Park-187298880-large.jpg", "Steven Spielberg", 1993,"lalalal"),
             Movie("Cruella","https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR5L6XSFSml9zrMqe_MPjzH-4pBZRHKl7ytjiEQvYXVZZxdQp1R", "Craig Gillespie", 2021,"lalalal"),
