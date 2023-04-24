@@ -10,6 +10,7 @@ data class Movie(
     var coverImage: String,
     var director: String,
     var releaseYear: Int,
+    @Lob
     var synopsis: String,
 
 
