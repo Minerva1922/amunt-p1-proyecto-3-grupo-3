@@ -54,12 +54,12 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"title\": \"Ratatouille\", \"coverImage\": \"https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg\", \"director\": \"Brad Bird\", \"releaseYear\": \"2007\", \"synopsis\": \"La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de uno de los cocineros más prestigiosos de Francia.\" }")
         ).andExpect(status().isOk)
-        val coders: List<Movie> = movieRepository.findAll()
+        val movies: List<Movie> = movieRepository.findAll()
         MatcherAssert.assertThat(
-            coders, Matchers.contains(
+            movies, Matchers.contains(
                 Matchers.allOf(
-                    Matchers.hasProperty("name", Matchers.`is`("Laura")),
-                    Matchers.hasProperty("favouriteLanguage", Matchers.`is`("PHP"))
+                    Matchers.hasProperty("title", Matchers.`is`("Ratatouille")),
+                    Matchers.hasProperty("director", Matchers.`is`("PHP"))
                 )
             )
         )
