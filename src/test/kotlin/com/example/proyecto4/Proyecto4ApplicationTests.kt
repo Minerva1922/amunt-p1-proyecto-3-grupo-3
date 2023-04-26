@@ -59,7 +59,11 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
             movies, Matchers.contains(
                 Matchers.allOf(
                     Matchers.hasProperty("title", Matchers.`is`("Ratatouille")),
-                    Matchers.hasProperty("director", Matchers.`is`("PHP"))
+                    Matchers.hasProperty("coverImage", Matchers.`is`("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg")),
+                    Matchers.hasProperty("director", Matchers.`is`("Brad Bird")),
+                    Matchers.hasProperty("releaseYear", Matchers.`is`("2007")),
+                    Matchers.hasProperty("synopsis", Matchers.`is`("La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de los cocineros más prestigiosos de Francia."))
+
                 )
             )
         )
@@ -85,9 +89,9 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
 
     @Test
     @Throws(Exception::class)
-    fun `allows to delete a coder by id`() {
-        val movie: Movie = movieRepository.save(Movie("Marta", "Kotlin"))
-        mockMvc.perform(MockMvcRequestBuilders.delete("/coders/" + coder.id))
+    fun `allows to delete a movie by id`() {
+        val movie: Movie = movieRepository.save(Movie("Ratatoui", ""))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/movie/" + movie.id))
             .andExpect(status().isOk)
         val movies: List<Movie> = movieRepository.findAll()
         MatcherAssert.assertThat(
