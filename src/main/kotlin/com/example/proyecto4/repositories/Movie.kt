@@ -8,15 +8,8 @@ data class Movie(
     var title: String,
     @Lob
     var coverImage: String,
-    var director: String,
-    var releaseYear: Int,
-    @Lob
-    var synopsis: String,
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    var id: Long? = null
+    var id: String? = null
 )

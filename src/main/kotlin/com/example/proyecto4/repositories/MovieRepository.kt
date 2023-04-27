@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MovieRepository: JpaRepository<Movie, Long> {
-    abstract val id: Any?
 }
