@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @SpringBootTest(
-classes = arrayOf(Proyecto4Application::class),
+classes = [Proyecto4Application::class],
 webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
@@ -72,12 +72,12 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
     @Test
     @Throws(Exception::class)
     fun `allows to find a movie by id`() {
-        val movie: Movie = movieRepository.save(Movie("Ratatouille", "https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg", ))
+        val movie: Movie = movieRepository.save(Movie("Ratatouille", "https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"))
 
         mockMvc.perform(MockMvcRequestBuilders.get("/movies/" + movie.id))
             .andExpect(status().isOk)
-            .andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.equalTo("")))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.favouriteLanguage", Matchers.equalTo("")))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.equalTo("Ratatouille")))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.coverImage", Matchers.equalTo("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg")))
     }
 
     @Test
@@ -90,7 +90,7 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
     @Test
     @Throws(Exception::class)
     fun `allows to delete a movie by id`() {
-        val movie: Movie = movieRepository.save(Movie("Ratatoui", "https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"))
+        val movie: Movie = movieRepository.save(Movie("Ratatouille", "https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"))
         mockMvc.perform(MockMvcRequestBuilders.delete("/movie/" + movie.id))
             .andExpect(status().isOk)
         val movies: List<Movie> = movieRepository.findAll()
@@ -98,8 +98,8 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
             movies, Matchers.not(
                 Matchers.contains(
                     Matchers.allOf(
-                        Matchers.hasProperty("name", Matchers.`is`("Marta")),
-                        Matchers.hasProperty("favouriteLanguage", Matchers.`is`("Kotlin"))
+                        Matchers.hasProperty("title", Matchers.`is`("Ratatouille")),
+                        Matchers.hasProperty("coverImage", Matchers.`is`("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"))
                     )
                 )
             )
@@ -125,7 +125,7 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
         mockMvc.perform(
             MockMvcRequestBuilders.put("/movies")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\": \"" + movieRepository.id + "\", \"title\": \"Ratatouille\", \"coverImage\": \"https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg\" }")
+                .content("{\"id\": \" + movieRepository.id + \", \"title\": \"Ratatouille\", \"coverImage\": \"https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg\" }")
         )
             .andExpect(status().isOk)
         val movie: List<Movie> = movieRepository.findAll()
@@ -141,7 +141,7 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
         mockMvc.perform(
             MockMvcRequestBuilders.put("/movies")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\": \"" + -1 + "\", \"name\": \"Pepita\", \"favouriteLanguage\": \"C++\" }")
+                .content("{\"id\": \"" + -1 + "\", \"movie\": \"Ratatouille\", \"coverImage\": \"https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg\" }")
         ).andExpect(status().isNotFound())
     }
 
