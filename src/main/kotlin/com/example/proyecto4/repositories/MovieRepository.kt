@@ -11,4 +11,5 @@ import java.util.*
 @Repository
 interface MovieRepository: JpaRepository<Movie, Long> {
     fun findById(id: SingularAttribute<AbstractPersistable<Serializable>, Serializable>?): Optional<Movie>
+    //abstract fun findById(it: String): Any
 }

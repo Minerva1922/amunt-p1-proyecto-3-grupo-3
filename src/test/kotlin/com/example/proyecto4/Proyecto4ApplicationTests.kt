@@ -2,8 +2,8 @@ package com.example.proyecto4
 
 import com.example.proyecto4.repositories.Movie
 import com.example.proyecto4.repositories.MovieRepository
-import org.hamcrest.MatcherAssert
-import org.hamcrest.Matchers
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,9 +11,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @SpringBootTest(
@@ -35,34 +35,34 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
     fun `returns the existing movie`() {
         addTestMovies()
         // peticion http get localhost:... /movies
-        mockMvc.perform(MockMvcRequestBuilders.get("/movies"))
+        mockMvc.perform(get("/movies"))
             .andExpect(status().isOk)
-            .andExpect(MockMvcResultMatchers.jsonPath("$[*]", Matchers.hasSize<Int>(8)))
-            .andExpect(MockMvcResultMatchers.jsonPath("$[0].title", Matchers.equalTo("Ratatouille")))
-            .andExpect(MockMvcResultMatchers.jsonPath("$[0].coverImage", Matchers.equalTo("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg")))
-            .andExpect(MockMvcResultMatchers.jsonPath("$[0].director", Matchers.equalTo("Brad Bird")))
-            .andExpect(MockMvcResultMatchers.jsonPath("$[0].releaseYear", Matchers.equalTo("2007")))
-            .andExpect(MockMvcResultMatchers.jsonPath("$[0].synopsis", Matchers.equalTo("La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de los cocineros más prestigiosos de Francia.")))
-             .andDo(MockMvcResultHandlers.print())
+            .andExpect(jsonPath("$[*]", hasSize<Int>(7)))
+            .andExpect(jsonPath("$[0].title", equalTo("Ratatouille")))
+            .andExpect(jsonPath("$[0].coverImage", equalTo("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg")))
+            .andExpect(jsonPath("$[0].director", equalTo("Brad Bird")))
+            .andExpect(jsonPath("$[0].releaseYear", equalTo("2007")))
+            .andExpect(jsonPath("$[0].synopsis", equalTo("La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de los cocineros más prestigiosos de Francia.")))
+            .andDo(print())
     }
 
     @Test
     @Throws(Exception::class)
     fun `allows to create a new movie`() {
         mockMvc.perform(
-            MockMvcRequestBuilders.post("/movie")
+            post("/movie")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"title\": \"Ratatouille\", \"coverImage\": \"https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg\", \"director\": \"Brad Bird\", \"releaseYear\": \"2007\", \"synopsis\": \"La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de uno de los cocineros más prestigiosos de Francia.\" }")
         ).andExpect(status().isOk)
         val movies: List<Movie> = movieRepository.findAll()
-        MatcherAssert.assertThat(
-            movies, Matchers.contains(
-                Matchers.allOf(
-                    Matchers.hasProperty("title", Matchers.`is`("Ratatouille")),
-                    Matchers.hasProperty("coverImage", Matchers.`is`("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg")),
-                    Matchers.hasProperty("director", Matchers.`is`("Brad Bird")),
-                    Matchers.hasProperty("releaseYear", Matchers.`is`("2007")),
-                    Matchers.hasProperty("synopsis", Matchers.`is`("La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de los cocineros más prestigiosos de Francia."))
+        assertThat(
+            movies, contains(
+                allOf(
+                    hasProperty("title", `is`("Ratatouille")),
+                    hasProperty("coverImage", `is`("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg")),
+                    hasProperty("director", `is`("Brad Bird")),
+                    hasProperty("releaseYear", `is`("2007")),
+                    hasProperty("synopsis", `is`("La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de los cocineros más prestigiosos de Francia."))
 
                 )
             )
@@ -74,16 +74,16 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
     fun `allows to find a movie by id`() {
         val movie: Movie = movieRepository.save(Movie("Ratatouille", "https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"," Brad Bird",2007, "La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de los cocineros más prestigiosos de Francia."))
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/movies/" + movie.id))
+        mockMvc.perform(get("/movies/" + movie.id))
             .andExpect(status().isOk)
-            .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.equalTo("Ratatouille")))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.coverImage", Matchers.equalTo("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg")))
+            .andExpect(jsonPath("$.title", equalTo("Ratatouille")))
+            .andExpect(jsonPath("$.coverImage", equalTo("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg")))
     }
 
     @Test
     @Throws(Exception::class)
     fun `returns an error if trying to get a coder that does not exist`() {
-        mockMvc.perform(MockMvcRequestBuilders.get("/movies/1"))
+        mockMvc.perform(get("/movies/1"))
             .andExpect(status().isNotFound())
     }
 
@@ -91,15 +91,15 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
     @Throws(Exception::class)
     fun `allows to delete a movie by id`() {
         val movie: Movie = movieRepository.save(Movie("Ratatouille", "https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg","Brad Bird",2007,"La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de los cocineros más prestigiosos de Francia."))
-        mockMvc.perform(MockMvcRequestBuilders.delete("/movie/" + movie.id))
+        mockMvc.perform(delete("/movie/" + movie.id))
             .andExpect(status().isOk)
         val movies: List<Movie> = movieRepository.findAll()
-        MatcherAssert.assertThat(
-            movies, Matchers.not(
-                Matchers.contains(
-                    Matchers.allOf(
-                        Matchers.hasProperty("title", Matchers.`is`("Ratatouille")),
-                        Matchers.hasProperty("coverImage", Matchers.`is`("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"))
+        assertThat(
+            movies, not(
+                contains(
+                    allOf(
+                        hasProperty("title", `is`("Ratatouille")),
+                        hasProperty("coverImage", `is`("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"))
                     )
                 )
             )
@@ -109,7 +109,7 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
     @Test
     @Throws(Exception::class)
     fun `returns an error if trying to delete a movie that does not exist`() {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/movies/1"))
+        mockMvc.perform(delete("/movies/1"))
             .andExpect(status().isNotFound())
     }
 
@@ -125,15 +125,15 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
             "La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de los cocineros más prestigiosos de Francia."
         ))
         mockMvc.perform(
-            MockMvcRequestBuilders.put("/movies")
+            put("/movies")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id\": \" + movieRepository.id + \", \"title\": \"Ratatouille\", \"coverImage\": \"https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg\" }")
         )
             .andExpect(status().isOk)
         val movie: List<Movie> = movieRepository.findAll()
-        MatcherAssert.assertThat(movie, Matchers.hasSize(1))
-        MatcherAssert.assertThat(movie[0].title, Matchers.equalTo("Ratatouille"))
-        MatcherAssert.assertThat(movie[0].coverImage, Matchers.equalTo("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"))
+        assertThat(movie, hasSize(1))
+        assertThat(movie[0].title, equalTo("Ratatouille"))
+        assertThat(movie[0].coverImage, equalTo("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"))
     }
 
     @Test
@@ -141,7 +141,7 @@ class Proyecto4ApplicationTests(@Autowired val mockMvc: MockMvc) {
     fun `returns an error when trying to modify a movie that does not exist`() {
         addTestMovies()
         mockMvc.perform(
-            MockMvcRequestBuilders.put("/movies")
+            put("/movies")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id\": \"" + -1 + "\", \"movie\": \"Ratatouille\", \"coverImage\": \"https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg\" }")
         ).andExpect(status().isNotFound())

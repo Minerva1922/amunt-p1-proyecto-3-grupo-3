@@ -16,5 +16,5 @@ data class Movie(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    var id: String? = null,
+    var id: Long? = null,
 )
