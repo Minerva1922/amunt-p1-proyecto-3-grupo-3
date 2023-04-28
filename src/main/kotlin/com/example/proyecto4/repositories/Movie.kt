@@ -12,8 +12,9 @@ data class Movie(
     var releaseYear: Int,
     @Lob
     var synopsis: String,
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    var id: String? = null
+    var id: String? = null,
 )

@@ -34,7 +34,7 @@ class MovieController(@Autowired private val movieRepository: MovieRepository) {
 //
     @PutMapping("/movies")
     fun updateMovieById(@RequestBody movie: Movie): Movie? {
-        movie.id?.let { movieRepository.findById(it).orElseThrow { MovieNotFoundException() } }
+        movie.id?.let { movieRepository.findById(Long).orElseThrow { MovieNotFoundException() } }
         return movieRepository.save(movie)
     }
 }
