@@ -82,7 +82,7 @@ Desarrollar la parte de backend (adaptar)
 - `Funcionalidad 6`: Cada vez que alquilemos una película, debe aparecer como "alquilada" y también debe registrarse quién la ha alquilado
 - `Funcionalidad 7`: Como usuaria del videoclub, Para poder decidir qué película quiero alquilar, Quiero poder conocer las valoraciones de las demás usuarias
 
-  Resultado:
+  Resultado: * funcionalidades 1, 2, 3, 4 tests pasados con exito.
 
 
 ## Desarrollador@s
