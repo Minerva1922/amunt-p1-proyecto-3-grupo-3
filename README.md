@@ -2,7 +2,7 @@
 
 <h1 aling="center">
 Film City
-<img src="C:\Users\miner\Downloads\image (1).png" alt="Film City">
+<img src="src/img/fondo_proyecto4.png" alt="Film City">
 </h1>
 
 ## Índice
@@ -71,6 +71,7 @@ Desarrollar la parte de backend (adaptar)
 - JSON
 - Api Rest
 - Postman
+- Canva
 
 ## :hammer:Funcionalidades del proyecto
 - `Funcionalidad 1`: Como usuaria del videoclub, para poder saber qué películas puedo alquilar, Quiero poder conocer el catálogo de películas
@@ -86,5 +87,5 @@ Desarrollar la parte de backend (adaptar)
 
 ## Desarrollador@s
 
-|[<img src="https://avatars.githubusercontent.com/u/126072279?v=4" width=115><br><sub>Jhoana Vicente</sub>](https://github.com/JhoanaVicente)| [<img src="https://avatars.githubusercontent.com/u/126768083?v=4" width=115><br><sub>Nelly</sub>](https://github.com/NellyKaykay) |[<img src="https://avatars.githubusercontent.com/u/126768002?v=4" width=115><br><sub>Irina Siokhina</sub>](https://github.com/IrinaSiokhin)|[<img src="https://avatars.githubusercontent.com/u/126767503?v=4" width=115><br><sub>Minerva Pedret</sub>](https://github.com/account)| 
-|:------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
+|[<img src="https://avatars.githubusercontent.com/u/126072279?v=4" width=115><br><sub>Jhoana Vicente</sub>](https://github.com/JhoanaVicente)| [<img src="https://avatars.githubusercontent.com/u/126768083?v=4" width=115><br><sub>Nelly Karapetyan</sub>](https://github.com/NellyKaykay) |[<img src="https://avatars.githubusercontent.com/u/126768002?v=4" width=115><br><sub>Irina Siokhina</sub>](https://github.com/IrinaSiokhin)|[<img src="https://avatars.githubusercontent.com/u/126767503?v=4" width=115><br><sub>Minerva Pedret</sub>](https://github.com/account)| 
+|:------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
