@@ -53,7 +53,7 @@ class Proyecto4AplicationTests(@Autowired val mockMvc: MockMvc) {
         mockMvc.perform(
             post("/movies")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"title\": \"Frozen\", \"coverImage\": \"https://lumiere-a.akamaihd.net/v1/images/p_frozen_18373_3131259c.jpeg?region=0%2C0%2C540%2C810\", \"director\": \"Chris Buck\", \"releaseYear\":2013, \"synopsis\": \"Una profecía condena al reino de Arandelle a vivir en un invierno eterno. La joven Anna, el temerario montañero Kristoff y el reno Sven deben emprender un viaje épico y lleno de aventuras en busca de Elsa, la hermana de Anna y Reina de las Nieves. Ella es la única que puede poner fin al gélido hechizo.\" }")
+                .content("{\"title\": \"Ratatouille\", \"coverImage\": \"https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg\", \"director\": \"Brad Bird\", \"releaseYear\":2007, \"synopsis\": \"La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de uno de los cocineros más prestigiosos de Francia.\" }")
         ).andExpect(status().isOk)
         val movies: List<Movie> = movieRepository.findAll()
         assertThat(
@@ -115,7 +115,7 @@ class Proyecto4AplicationTests(@Autowired val mockMvc: MockMvc) {
     @Test
     @Throws(Exception::class)
     fun `returns an error if trying to delete a movie that does not exist`() {
-        mockMvc.perform(delete("/movies/1"))
+        mockMvc.perform(delete("/movies/170"))
             .andExpect(status().isNotFound())
     }
 
@@ -136,7 +136,7 @@ class Proyecto4AplicationTests(@Autowired val mockMvc: MockMvc) {
                 .content("{\"id\": \" + movieRepository.id + \", \"title\": \"Ratatouille\", \"coverImage\": \"https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg\", \"director\": \"Brad Bird\", \"releaseYear\": 2007, \"synopsis\": \"La película narra la historia de una rata que sueña con convertirse en chef y para realizar su objetivo, decide hacer una alianza con el hijo de uno de los cocineros más prestigiosos de Francia.\" }")
         ).andExpect(status().isOk)
         val movies: List<Movie> = movieRepository.findAll()
-        assertThat(movies, hasSize(1))
+        assertThat(movies, hasSize(16))
         assertThat(movies[0].title, equalTo("Ratatouille"))
         assertThat(movies[0].coverImage, equalTo("https://cgmoviereview.files.wordpress.com/2014/11/cover58.jpg"))
         assertThat(movies[0].director, equalTo("Brad Bird"))
