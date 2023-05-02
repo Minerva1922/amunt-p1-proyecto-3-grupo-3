@@ -32,8 +32,8 @@ class DataLoader(private val movieRepository: MovieRepository) {
             Movie(
                 "Mean Girls",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp_2JWhvdh8b7CT6y62q0alRgO9u_M9JeKRbvPjF7yzBU9HbdE",
-                "Craig Gillespie",
-                2021,
+                "Mark Waters",
+                2004,
                 "Una joven adolescente, Cady, acostumbrada a vivir en África con sus padres zoólogos, se encuentra una nueva jungla cuando se muda a Illinois. Allí acude a la escuela pública, donde se enamorará del ex-novio de la chica más popular del colegio."
             ),
             Movie(
