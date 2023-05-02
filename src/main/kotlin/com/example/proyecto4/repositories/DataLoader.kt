@@ -41,7 +41,7 @@ class DataLoader(private val movieRepository: MovieRepository) {
                 "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQV7rVedyzgHhUV2Gz3hnNyPQE5Dq9hvwU2gGUDiaZlnJaNdvwJ",
                 "Greta Gerwig",
                 2017,
-                "Christine (Saoirse Ronan), que se hace llamar \"Lady Bird\", es una adolescente de Sacramento en su último año de instituto. La joven, con inclinaciones artísticas y que sueña con vivir en la costa Este, trata de ese modo encontrar su propio camino y definirse fuera de la sombra protectora de su madre (Laurie Metcalf)."
+                "Christine (Saoirse Ronan), es una adolescente de Sacramento en su último año de instituto. La joven, con inclinaciones artísticas y que sueña con vivir en la costa Este, trata de ese modo encontrar su propio camino y definirse fuera de la sombra protectora de su madre (Laurie Metcalf)."
             ),
             Movie(
                 "Suffragette",
